@@ -1,10 +1,18 @@
 import { Field } from "../interfaces/Field";
 import InputField from "../fields/InputField";
 import { make, getFormValues } from "../utils";
+import EmailField from "../fields/EmailField";
+import CheckboxField from "../fields/CheckboxField";
+import TextareaField from "../fields/TextAreaField";
 
 class Form {
     fields: Field[] = [
-        new InputField('name', 'Imię', ''),
+        new InputField("name", "Imię", ""),
+        new InputField("surname", "Nazwisko", ""),
+        new EmailField("email", "Email", ""),
+        // new SelectField('specialization', 'Kierunek studiów', ''),
+        new CheckboxField("elearning", "Czy preferujesz elearning", ""),
+        new TextareaField("notes", "Uwagi", ""),
     ];
 
     form?: HTMLElement;
@@ -13,22 +21,22 @@ class Form {
         return this.form ? getFormValues(target) : JSON.stringify({});
     }
 
-    render(target: HTMLElement,) {
-        target.innerHTML = '';
-        this.form = make('form');
+    render(target: HTMLElement) {
+        target.innerHTML = "";
+        this.form = make("form");
 
-        this.fields.forEach(field => {
-            const wrapper = make('div');
+        this.fields.forEach((field) => {
+            const wrapper = make("div");
             field.render(wrapper);
 
             (this.form as HTMLElement).appendChild(wrapper);
         });
 
-        const submit = make('button', {
-            type: 'submit',
-            innerText: 'Wyślij'
+        const submit = make("button", {
+            type: "submit",
+            innerText: "Wyślij",
         });
-        
+
         this.form.appendChild(submit);
 
         target.appendChild(this.form);

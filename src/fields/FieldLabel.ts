@@ -2,10 +2,10 @@ import { make } from "../utils";
 
 class FieldLabel {
     static render(target: HTMLElement, input: HTMLElement, label: string) {
-        const wrapper = make('div');
-        const labelElement = make('label', {
+        const wrapper = make("div");
+        const labelElement = make("label", {
             htmlFor: input.id,
-            innerHTML: `${label}: `
+            innerHTML: `${label}: `,
         }) as HTMLLabelElement;
 
         wrapper.appendChild(labelElement);
