@@ -23,7 +23,7 @@ export function getFormValues(form: HTMLElement): string {
     )[];
 
     inputs.forEach((input) => {
-        data[input.name] = input.value;
+        data[input.name] = input.type === 'checkbox' ? (input as any).checked : input.value;
     });
 
     return JSON.stringify(data, null, 2);

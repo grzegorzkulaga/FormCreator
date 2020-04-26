@@ -12,7 +12,7 @@ class App {
         (form.form as HTMLElement).onsubmit = (event) => {
             event.preventDefault();
             console.log("form", form.getValue(content));
-            results.innerHTML = `<textarea>${form.getValue(
+            results.innerHTML = `<textarea readonly>${form.getValue(
                 content
             )}</textarea>`;
         };

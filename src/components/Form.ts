@@ -34,7 +34,9 @@ class Form {
         this.form = make("form");
 
         this.fields.forEach((field) => {
-            const wrapper = make("div");
+            const wrapper = make("div", {
+                className: 'field'
+            });
             field.render(wrapper);
 
             (this.form as HTMLElement).appendChild(wrapper);
