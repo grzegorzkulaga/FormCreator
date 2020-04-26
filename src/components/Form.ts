@@ -4,13 +4,21 @@ import { make, getFormValues } from "../utils";
 import EmailField from "../fields/EmailField";
 import CheckboxField from "../fields/CheckboxField";
 import TextareaField from "../fields/TextAreaField";
+import SelectField from "../fields/SelectField";
+
+const specializations = ["Programowanie aplikacji mobilnych i webowych", "Informatyka"];
 
 class Form {
     fields: Field[] = [
         new InputField("name", "Imię", ""),
         new InputField("surname", "Nazwisko", ""),
         new EmailField("email", "Email", ""),
-        // new SelectField('specialization', 'Kierunek studiów', ''),
+        new SelectField(
+            "specialization",
+            "Kierunek studiów",
+            "",
+            specializations
+        ),
         new CheckboxField("elearning", "Czy preferujesz elearning", ""),
         new TextareaField("notes", "Uwagi", ""),
     ];

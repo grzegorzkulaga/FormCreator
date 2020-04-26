@@ -3,6 +3,6 @@ export enum FieldType {
     Textarea,
     Date,
     Email,
-    // Select,
+    Select,
     Checkbox,
 }
