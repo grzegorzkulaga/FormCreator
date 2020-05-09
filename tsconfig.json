@@ -4,6 +4,7 @@
         "sourceMap": true,
         "strict": true,
         "noImplicitReturns": true,
+        "strictNullChecks": false,
         "noImplicitAny": false,
         "module": "es6",
         "moduleResolution": "node",

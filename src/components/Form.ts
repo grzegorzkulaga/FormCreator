@@ -39,7 +39,7 @@ class Form {
             });
             field.render(wrapper);
 
-            (this.form as HTMLElement).appendChild(wrapper);
+            this.form.appendChild(wrapper);
         });
 
         const submit = make("button", {

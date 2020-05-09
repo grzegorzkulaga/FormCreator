@@ -9,7 +9,7 @@ class App {
         const form = new Form();
 
         form.render(content);
-        (form.form as HTMLElement).onsubmit = (event) => {
+        form.form.onsubmit = (event) => {
             event.preventDefault();
             console.log("form", form.getValue(content));
             results.innerHTML = `<textarea readonly>${form.getValue(
