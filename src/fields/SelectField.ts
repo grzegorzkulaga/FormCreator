@@ -10,6 +10,8 @@ class SelectField implements Field {
     value: string;
     values: string[];
 
+    field: HTMLSelectElement;
+
     constructor(
         name: string,
         label: string,
@@ -22,22 +24,26 @@ class SelectField implements Field {
         this.values = values;
     }
 
+    getValue(): string {
+        return this.field.options[this.field.selectedIndex].value;
+    }
+
     render(target: HTMLElement): void {
-        const select = make("select", {
+        this.field = make("select", {
             value: this.value,
             name: this.name,
             id: this.name,
-        });
+        }) as HTMLSelectElement;
 
         this.values.forEach((value) => {
             const option = make("option", {
                 value,
                 innerText: value,
             });
-            select.appendChild(option);
+            this.field.appendChild(option);
         });
 
-        FieldLabel.render(target, select, this.label);
+        FieldLabel.render(target, this.field, this.label);
     }
 }
 

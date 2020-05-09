@@ -1,6 +1,6 @@
 import { Field } from "../interfaces/Field";
 import InputField from "../fields/InputField";
-import { make, getFormValues } from "../utils";
+import { make } from "../utils";
 import EmailField from "../fields/EmailField";
 import CheckboxField from "../fields/CheckboxField";
 import TextareaField from "../fields/TextAreaField";
@@ -19,14 +19,19 @@ class Form {
             "",
             specializations
         ),
-        new CheckboxField("elearning", "Czy preferujesz elearning", ""),
+        new CheckboxField("elearning", "Czy preferujesz elearning", false),
         new TextareaField("notes", "Uwagi", ""),
     ];
 
     form?: HTMLElement;
 
-    getValue(target: HTMLElement) {
-        return this.form ? getFormValues(target) : JSON.stringify({});
+    getValue() {
+        const data = {};
+        this.fields.forEach(field => {
+            data[field.name] = field.getValue();
+        })
+        
+        return data;
     }
 
     render(target: HTMLElement) {

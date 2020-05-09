@@ -1,4 +1,4 @@
-import { make, query } from "../utils";
+import { query } from "../utils";
 import Form from "./Form";
 
 class App {
@@ -11,10 +11,7 @@ class App {
         form.render(content);
         form.form.onsubmit = (event) => {
             event.preventDefault();
-            console.log("form", form.getValue(content));
-            results.innerHTML = `<textarea readonly>${form.getValue(
-                content
-            )}</textarea>`;
+            results.innerHTML = `<textarea readonly>${JSON.stringify(form.getValue(), null, 2)}</textarea>`;
         };
     }
 }
