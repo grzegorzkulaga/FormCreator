@@ -30,6 +30,10 @@ input, textarea, select, button {
     font-size: 21px;
 }
 
+button {
+    width: 50%;
+}
+
 .field {
     padding: 10px 0;
 }
