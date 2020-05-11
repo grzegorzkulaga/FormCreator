@@ -1,10 +1,11 @@
 * {
-    margin: 0px; 
-    padding: 0px; 
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
     height: 100%;
     font-family: sans-serif;
 }
@@ -19,7 +20,10 @@ body {
     max-width: 550px;
 }
 
-input, textarea, select, button {
+input,
+textarea,
+select,
+button {
     height: 60px;
     padding: 0 32px;
     width: 100%;

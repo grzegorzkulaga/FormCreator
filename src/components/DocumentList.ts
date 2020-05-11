@@ -16,9 +16,9 @@ class DocumentList {
     }
 
     getEntry(value: string) {
-        const tr = make('tr');
-        const td = make('td', {
-            innerHTML: value
+        const tr = make("tr");
+        const td = make("td", {
+            innerHTML: value,
         });
 
         tr.appendChild(td);
@@ -29,12 +29,12 @@ class DocumentList {
     render(target: HTMLElement) {
         this.getDocuments();
 
-        const table = make('table');
-        table.appendChild(this.getEntry('id dokumentu'))
+        const table = make("table");
+        table.appendChild(this.getEntry("id dokumentu"));
 
         this.idList.forEach((id) => {
-            table.appendChild(this.getEntry(id))
-        })
+            table.appendChild(this.getEntry(id));
+        });
 
         target.appendChild(table);
     }

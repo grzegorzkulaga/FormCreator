@@ -5,12 +5,11 @@ class LocStorage implements Storage {
         const id = `document-${Date.now().toString()}`;
         const documents = [...this.getDocuments(), id];
 
-        localStorage.setItem('documents', JSON.stringify(documents));
+        localStorage.setItem("documents", JSON.stringify(documents));
         localStorage.setItem(id, JSON.stringify(document));
 
         return id;
     }
-
 
     loadDocument(id: string): Record<string, any> {
         const document = localStorage.getItem(id);
@@ -18,9 +17,8 @@ class LocStorage implements Storage {
         return JSON.parse(document);
     }
 
-
     getDocuments(): string[] {
-        const items = localStorage.getItem('documents');
+        const items = localStorage.getItem("documents");
 
         return items ? JSON.parse(items) : [];
     }

@@ -36,10 +36,10 @@ class Form {
 
     getValue() {
         const data = {};
-        this.fields.forEach(field => {
+        this.fields.forEach((field) => {
             data[field.name] = field.getValue();
-        })
-        
+        });
+
         return data;
     }
 
@@ -48,7 +48,7 @@ class Form {
 
         this.localStorage.saveDocument(this.getValue());
 
-        window.location.href = '/index.html';
+        window.location.href = "/index.html";
     }
 
     render(target: HTMLElement) {
@@ -57,7 +57,7 @@ class Form {
 
         this.fields.forEach((field) => {
             const wrapper = make("div", {
-                className: 'field'
+                className: "field",
             });
             field.render(wrapper);
 
@@ -66,12 +66,12 @@ class Form {
 
         const back = make("button", {
             innerText: "Wstecz",
-            onclick: () => window.location.href = '/index.html'
+            onclick: () => (window.location.href = "/index.html"),
         });
 
         const submit = make("button", {
             innerText: "Zapisz",
-            onclick: this.save
+            onclick: this.save,
         });
 
         this.form.appendChild(back);

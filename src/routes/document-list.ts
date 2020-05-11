@@ -8,10 +8,9 @@ class App {
         const content = query("#content");
 
         const component = new DocumentList();
- 
+
         component.render(content);
     }
 }
-
 
 window.onload = () => new App();
