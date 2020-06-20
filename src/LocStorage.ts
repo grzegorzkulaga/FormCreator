@@ -17,6 +17,13 @@ class LocStorage implements Storage {
         return JSON.parse(document);
     }
 
+    removeDocument(id: string) {
+        const documents = this.getDocuments().filter(value => value !== id)
+
+        localStorage.setItem("documents", JSON.stringify(documents));
+        localStorage.removeItem(id);
+    }
+
     getDocuments(): string[] {
         const items = localStorage.getItem("documents");
 
