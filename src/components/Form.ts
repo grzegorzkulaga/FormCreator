@@ -10,28 +10,30 @@ import LocStorage from "../LocStorage";
 const specializations = ["Programowanie aplikacji mobilnych i webowych", "Informatyka"];
 
 class Form {
+    id: string = null;
+    fields: Field[];
+    form?: HTMLElement;
     localStorage: LocStorage;
 
-    fields: Field[] = [
-        new InputField("name", "Imię", ""),
-        new InputField("surname", "Nazwisko", ""),
-        new EmailField("email", "Email", ""),
-        new SelectField(
-            "specialization",
-            "Kierunek studiów",
-            "",
-            specializations
-        ),
-        new CheckboxField("elearning", "Czy preferujesz elearning", false),
-        new TextareaField("notes", "Uwagi", ""),
-    ];
-
-    form?: HTMLElement;
-
-    constructor() {
+    constructor(id: string = null, document: Record<string, any> = {}) {
         this.localStorage = new LocStorage();
 
         this.save = this.save.bind(this);
+
+        this.id = id;
+        this.fields = [
+            new InputField("name", "Imię", document["name"] || ""),
+            new InputField("surname", "Nazwisko", document["surname"] || ""),
+            new EmailField("email", "Email", document["email"] || ""),
+            new SelectField(
+                "specialization",
+                "Kierunek studiów",
+                document["specialization"] || "",
+                specializations
+            ),
+            new CheckboxField("elearning", "Czy preferujesz elearning", document["elearning"] || false),
+            new TextareaField("notes", "Uwagi", document["notes"] || ""),
+        ]
     }
 
     getValue() {
@@ -46,7 +48,7 @@ class Form {
     save(event: MouseEvent) {
         event.preventDefault();
 
-        this.localStorage.saveDocument(this.getValue());
+        this.localStorage.saveDocument(this.getValue(), this.id);
 
         window.location.href = "/index.html";
     }
