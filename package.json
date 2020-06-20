@@ -5,8 +5,8 @@
     "main": "index.ts",
     "scripts": {
         "clean": "rm dist/*",
-        "start": "parcel src/index.html",
-        "build-prod": "parcel build src/index.html",
+        "start": "parcel src/*.html",
+        "build-prod": "parcel build src/*.html",
         "format": "yarn prettier --write ."
     },
     "author": "",
