@@ -55,7 +55,9 @@ class Form {
 
     render(target: HTMLElement) {
         target.innerHTML = "";
-        this.form = make("form");
+        this.form = make("form", {
+            onsubmit: (e) => e.preventDefault()
+        });
 
         this.fields.forEach((field) => {
             const wrapper = make("div", {
@@ -68,7 +70,7 @@ class Form {
 
         const back = make("button", {
             innerText: "Wstecz",
-            onclick: () => (window.location.href = "/index.html"),
+            onclick: () => window.history.back(),
         });
 
         const submit = make("button", {

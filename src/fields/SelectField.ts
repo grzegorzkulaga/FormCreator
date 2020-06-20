@@ -39,6 +39,7 @@ class SelectField implements Field {
             const option = make("option", {
                 value,
                 innerText: value,
+                selected: value === this.value,
             });
             this.field.appendChild(option);
         });
