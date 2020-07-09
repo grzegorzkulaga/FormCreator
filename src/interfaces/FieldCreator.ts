@@ -7,4 +7,5 @@ export interface FieldCreator {
     label: InputField;
     type: SelectField;
     defaultValue: InputField;
+    extra?: any;
 }

@@ -25,7 +25,7 @@ class FormCreator {
         this.localStorage = new LocStorage();
 
         if (data) {
-            data.forEach(({ name, type, label, defaultValue }) => this.addField(name, type, label, defaultValue))
+            data.forEach(({ name, type, label, defaultValue, extra }) => this.addField(name, type, label, defaultValue, extra))
         }
 
         this.renderField = this.renderField.bind(this);
@@ -46,12 +46,13 @@ class FormCreator {
         return data;
     }
 
-    addField(name = "", type = "", label = "", defaultValue = "") {
+    addField(name = "", type = "", label = "", defaultValue = "", extra = "") {
         const fieldCreator: FieldCreator = {
             name: new InputField("name", "Nazwa", name),
             type: new SelectField("type", "Typ pola", type, FIELD_TYPES),
             label: new InputField("label", "Etykieta", label),
             defaultValue: new InputField("defaultValue", "Domylna wartość", defaultValue),
+            extra: new InputField('extra', 'Dodatkowe dane (opcjonalne)', extra),
         }
 
         this.fields.push(fieldCreator);

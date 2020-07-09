@@ -27,8 +27,12 @@ class Form {
         this.id = id;
 
         const form = this.localStorage.loadForm(formId);
-        
-        this.fields = form.map(({ name, type, label, defaultValue }) => {
+
+        this.fields = form.map(({ name, type, label, defaultValue, extra }) => {
+            if (type === 'Select') {
+                return new SelectField(name, label, document[name] || defaultValue, extra.split(','))
+            }
+
             const Field: any = this.getField(type);
 
             return new Field(name, label, document[name] || defaultValue);
@@ -50,10 +54,6 @@ class Form {
 
         if (type === "Textarea") {
             return TextareaField;
-        }
-
-        if (type === "Select") {
-            return SelectField;
         }
 
         return InputField;
