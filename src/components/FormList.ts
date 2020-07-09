@@ -1,7 +1,7 @@
 import LocStorage from "../LocStorage";
 import { make } from "../utils";
 
-class DocumentList {
+class FormList {
     localStorage: LocStorage;
     idList: string[];
 
@@ -9,64 +9,67 @@ class DocumentList {
         this.localStorage = new LocStorage();
     }
 
-    getDocuments(): string[] {
-        this.idList = this.localStorage.getDocuments();
+    getForms(): string[] {
+        this.idList = this.localStorage.getForms();
 
         return this.idList;
     }
 
-    getDocument(id) {
-        return this.localStorage.loadDocument(id);
+    getForm(id) {
+        return this.localStorage.loadForm(id);
     }
 
-    removeDocument(id) {
-        this.localStorage.removeDocument(id);
+    removeForm(id) {
+        this.localStorage.removeForm(id);
         
         window.location.reload();
     }
 
     getHeader() {
         const tr = make("tr");
-        const document = make("td", {
-            innerHTML: "Dokument"
+        const form = make("td", {
+            innerHTML: "Formularz"
         })
         const options = make("td", {
             innerHTML: "Opcje"
         })
 
-        tr.appendChild(document);
+        tr.appendChild(form);
         tr.appendChild(options);
 
         return tr;
     }
 
     getEntry(value: string) {
-        const document = this.getDocument(value);
         const tr = make("tr");
 
-        const anchorTd = make("td");
-        const anchor = make("a", {
-            href: `edit-document.html?id=${value}&formId=${document.formId}`,
-            innerHTML: value
+        const titleTd = make("td", {
+            innerText: value
         });
 
         const optionsTd = make("td");
-        const options = make("a", {
+        const remove = make("a", {
             innerHTML: 'Usuń',
             href: "#",
-            onclick: () => this.removeDocument(value)
+            onclick: () => this.removeForm(value)
+        });
+        const fill = make("a", {
+            innerHTML: 'Wypełnij',
+            href: `new-document.html?formId=${value}`,
         });
 
-        anchorTd.appendChild(anchor);
-        optionsTd.appendChild(options);
-        tr.appendChild(anchorTd);
+        optionsTd.appendChild(remove);
+        optionsTd.appendChild(make('br'));
+        optionsTd.appendChild(fill);
+
+        tr.appendChild(titleTd);
         tr.appendChild(optionsTd);
 
         return tr;
     }
 
     render(target: HTMLElement) {
-        this.getDocuments();
+        this.getForms();
 
         const table = make("table");
         table.appendChild(this.getHeader());
@@ -79,4 +82,4 @@ class DocumentList {
     }
 }
 
-export default DocumentList;
+export default FormList;

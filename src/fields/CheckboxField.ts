@@ -11,10 +11,10 @@ class CheckboxField implements Field {
 
     field: HTMLInputElement;
 
-    constructor(name: string, label: string, value: boolean = false) {
+    constructor(name: string, label: string, value: string | boolean = false) {
         this.name = name;
         this.label = label;
-        this.value = value;
+        this.value = typeof value === 'boolean' ? value : value === 'true';
     }
 
     getValue(): boolean {

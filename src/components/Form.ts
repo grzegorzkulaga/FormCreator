@@ -6,38 +6,63 @@ import CheckboxField from "../fields/CheckboxField";
 import TextareaField from "../fields/TextAreaField";
 import SelectField from "../fields/SelectField";
 import LocStorage from "../LocStorage";
+import DateField from "../fields/DateField";
 
 const specializations = ["Programowanie aplikacji mobilnych i webowych", "Informatyka"];
 
 class Form {
     id: string = null;
+    formId: string = null;
+
     fields: Field[];
     form?: HTMLElement;
     localStorage: LocStorage;
 
-    constructor(id: string = null, document: Record<string, any> = {}) {
+    constructor(formId: string, id: string = null, document: Record<string, any> = {}) {
         this.localStorage = new LocStorage();
 
         this.save = this.save.bind(this);
 
+        this.formId = formId;
         this.id = id;
-        this.fields = [
-            new InputField("name", "Imię", document["name"] || ""),
-            new InputField("surname", "Nazwisko", document["surname"] || ""),
-            new EmailField("email", "Email", document["email"] || ""),
-            new SelectField(
-                "specialization",
-                "Kierunek studiów",
-                document["specialization"] || "",
-                specializations
-            ),
-            new CheckboxField("elearning", "Czy preferujesz elearning", document["elearning"] || false),
-            new TextareaField("notes", "Uwagi", document["notes"] || ""),
-        ]
+
+        const form = this.localStorage.loadForm(formId);
+        
+        this.fields = form.map(({ name, type, label, defaultValue }) => {
+            const Field: any = this.getField(type);
+
+            return new Field(name, label, document[name] || defaultValue);
+        })
+    }
+
+    getField(type) {
+        if (type === "Email") {
+            return EmailField;
+        }
+
+        if (type === "Date") {
+            return DateField;
+        }
+
+        if (type === "Checkbox") {
+            return CheckboxField;
+        }
+
+        if (type === "Textarea") {
+            return TextareaField;
+        }
+
+        if (type === "Select") {
+            return SelectField;
+        }
+
+        return InputField;
     }
 
     getValue() {
-        const data = {};
+        const data = {
+            formId: this.formId
+        };
         this.fields.forEach((field) => {
             data[field.name] = field.getValue();
         });

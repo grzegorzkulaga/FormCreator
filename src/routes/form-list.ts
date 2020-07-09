@@ -1,5 +1,5 @@
 import { query } from "../utils";
-import FormCreator from "../components/FormCreator";
+import FormList from "../components/FormList";
 
 import "../styles.css";
 
@@ -7,8 +7,9 @@ class App {
     constructor() {
         const content = query("#content");
 
-        const form = new FormCreator();
-        form.newForm(content);
+        const component = new FormList();
+
+        component.render(content);
     }
 }
 
