@@ -7,7 +7,7 @@ import "../styles.css";
 class App {
     constructor() {
         const content = query("#content");
-
+        
         const formId = Router.getParam('formId');
 
         const form = new Form(formId);

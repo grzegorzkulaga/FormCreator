@@ -8,8 +8,6 @@ import SelectField from "../fields/SelectField";
 import LocStorage from "../LocStorage";
 import DateField from "../fields/DateField";
 
-const specializations = ["Programowanie aplikacji mobilnych i webowych", "Informatyka"];
-
 class Form {
     id: string = null;
     formId: string = null;
@@ -36,7 +34,7 @@ class Form {
             const Field: any = this.getField(type);
 
             return new Field(name, label, document[name] || defaultValue);
-        })
+        });
     }
 
     getField(type) {

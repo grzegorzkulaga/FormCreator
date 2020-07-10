@@ -15,7 +15,7 @@ class SelectField implements Field {
     constructor(
         name: string,
         label: string,
-        value: string = "",
+        value: string = "", 
         values: string[]
     ) {
         this.name = name;
@@ -23,6 +23,8 @@ class SelectField implements Field {
         this.value = value;
         this.values = values;
     }
+
+
 
     getValue(): string {
         return this.field.options[this.field.selectedIndex].value;

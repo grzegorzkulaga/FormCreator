@@ -64,6 +64,7 @@ class FormCreator {
         const wrapper = make("div", {
             className: "field-creator",
         });
+
         Object.keys(fieldCreator).forEach(key => fieldCreator[key].render(wrapper));
 
         this.fieldsWrapper.appendChild(wrapper);
@@ -103,7 +104,7 @@ class FormCreator {
         target.appendChild(this.form);
     }
 
-    saveForm() {
+    saveForm(event: MouseEvent) {
         event.preventDefault();
 
         this.localStorage.saveForm(this.getValue());

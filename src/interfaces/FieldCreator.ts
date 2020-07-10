@@ -1,4 +1,3 @@
-import { FieldType } from "./FieldType";
 import InputField from "../fields/InputField";
 import SelectField from "../fields/SelectField";
 

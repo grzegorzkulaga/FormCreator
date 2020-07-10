@@ -1,5 +1,4 @@
 import { Storage } from "./interfaces/Storage";
-import FormCreator from "./components/FormCreator";
 
 class LocStorage implements Storage {
     saveDocument(document: Record<string, any>, currentId: string = null): string {
